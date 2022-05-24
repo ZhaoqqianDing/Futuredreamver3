@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.futuredreamtraveller.demo.Mapper.UserMapper">
+
+    <resultMap id="BaseResultMap" type="com.futuredreamtraveller.demo.Entity.User">
+        <result column="UserID" jdbcType="INTEGER" property="userID" />
+        <result column="UserName" jdbcType="VARCHAR" property="userName" />
+        <result column="Password" jdbcType="VARCHAR" property="password" />
+    </resultMap>
+    <resultMap id="BaseResultMap2" type="com.futuredreamtraveller.demo.Entity.Record">
+        <result column="UserID" jdbcType="INTEGER" property="userID" />
+        <result column="distance" jdbcType="VARCHAR" property="distance" />
+        <result column="t_type" jdbcType="VARCHAR" property="type" />
+    </resultMap>
+
+    <select id="selectUser" resultType="com.futuredreamtraveller.demo.Entity.User">
+        select * from fdtUser where userID = #{id}
+    </select>
+
+    <select id="logIn" resultType="com.futuredreamtraveller.demo.Entity.User">
+        SELECT * FROM fdtUser where userName = #{userName} and Password = #{password}
+    </select>
+
+    <insert id="register" parameterType="com.futuredreamtraveller.demo.Entity.User">
+        INSERT INTO fdtUser (userID,userName, password) VALUES (#{userID},#{userName}, #{password})
+    </insert>
+
+    <select id="selectUserByUserName" resultType="com.futuredreamtraveller.demo.Entity.User">
+        select * from fdtUser where userName = #{userName}
+    </select>
+
+    <select id="reportData" resultMap="BaseResultMap2" >
+        select * from ftdrecord where useID=#{userID} order by ftd_ID desc limit #{num}
+    </select>
+</mapper>

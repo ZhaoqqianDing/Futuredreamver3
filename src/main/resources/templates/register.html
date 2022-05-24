@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <title>Sign Up</title>
+      <link rel="stylesheet" href="../css/bootstrap.min.css" />
+      <link rel="stylesheet" href="../css/mdb.min.css" />
+      <link rel="stylesheet" href="../css/sign-up.css" />
+      <link rel="icon" href="../images/lcar.ico" type="image/x-icon" />
+      <script src="../js/jquery-3.6.0.js"></script>
+      <script
+        src="https://kit.fontawesome.com/165fd3af92.js"
+        crossorigin="anonymous"
+      ></script>
+    </head>
+
+    <body>
+      <div class="sign-up-form md-form">
+        <h4><strong>Sign Up Now!</strong></h4>
+        <div class="container">
+          <form
+            action="/PageController/register"
+            method="post"
+            class="RegisterBox"
+            onsubmit="return comparePassword()"
+            align="left"
+          >
+            <div class="mb-4">
+              <label for="UserName">UserName:</label>
+              <input
+                type="text"
+                class="form-control"
+                name="userName"
+                id="userName"
+                placeholder="Please enter your username"
+              />
+            </div>
+            <div class="md-4">
+              <label for="Password" data-error="wrong" data-success="right"
+                >Password:</label
+              >
+              <input
+                type="password"
+                class="form-control validate"
+                placeholder="Type Password"
+                name="password"
+                id="password"
+              />
+              <p>
+                <font color="red" size="2"
+                  >Password should be at least 8 characters and no longer than
+                  30 characters,and numbers, uppercase letters, lowercase
+                  letters, and special characters</font
+                >
+              </p>
+            </div>
+            <div class="mb-4">
+              <label
+                for="ConfirmPassword"
+                data-error="wrong"
+                data-success="right"
+                >Comfirm Password:</label
+              >
+              <input
+                type="password"
+                class="form-control confirmation"
+                placeholder="Confirm Password"
+                name="ConfirmPassword"
+                id="ConfirmPassword"
+              />
+            </div>
+            <input
+              type="submit"
+              class="btn btn-primary"
+              id="sign-in-btn"
+              value="Sign Up"
+            />
+          </form>
+
+          <!--    this button can not put in the form, due to we need check input when submit the form!-->
+          <div class="back-btn">
+            <a href="/PageController/toHomePage">
+              <button class="btn btn-secondary" align="center">
+                Go back！
+              </button>
+            </a>
+          </div>
+          <hr style="margin-top: -20px" />
+          <p>
+            Already have an account?
+            <a href="/PageController/toLogIn">Sign In</a>
+          </p>
+          <div class="sign-in-btn">
+            <a href="/PageController/toLogIn">
+              <button class="btn btn-primary" align="center">Sign In</button>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="alert alert-warning password-alert" role="alert">
+        <ul>
+          <li class="requirements leng">
+            <i class="fas fa-check green-text"></i
+            ><i class="fas fa-times red-text"></i> Your password must have at
+            least 8 chars.
+          </li>
+          <li class="requirements big-letter">
+            <i class="fas fa-check green-text"></i
+            ><i class="fas fa-times red-text"></i> Your password must have at
+            least 1 big letter.
+          </li>
+          <li class="requirements small-letter">
+            <i class="fas fa-check green-text"></i
+            ><i class="fas fa-times red-text"></i> Your password must have at
+            least 1 small letter.
+          <li class="requirements num">
+            <i class="fas fa-check green-text"></i
+            ><i class="fas fa-times red-text"></i> Your password must have at
+            least 1 number.
+          </li>
+          <li class="requirements special-char">
+            <i class="fas fa-check green-text"></i
+            ><i class="fas fa-times red-text"></i> Your password must have at
+            least 1 special char.
+          </li>
+        </ul>
+      </div>
+      <div class="alert alert-warning confirm-password-alert">
+          <ul>
+            <li class="same">
+              <i class="fas fa-check green-text"></i
+                ><i class="fas fa-times red-text"></i>
+                Your password should be the same as the original one.
+            </li>
+          </ul>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+      <script src="../js/bootstrap.min.js"></script>
+      <script src="../js/mdb.min.js"></script>
+      <script src="../js/sign-up.js"></script>
+    </body>
+
+    <script>
+      function comparePassword() {
+        var password = document.getElementById("password").value;
+        var confirmPassword = document.getElementById("ConfirmPassword").value;
+        var UserName = document.getElementById("userName").value;
+
+        console.log(UserName);
+        $.ajax({
+          type: "post",
+          url: "/UserController/checkUserNameUnique",
+          data: {
+            //type: type,
+            userName: UserName,
+            // duration:duration
+          },
+          success: function (result) {
+            // console.log(result);
+            //shuffledQuestions=JSON.parse(result);
+            for (var i in result) {
+              if (result != "this user name is ok") {
+                alert("the user name is already been used");
+                return false;
+              }
+            }
+          },
+          error: function (result) {
+            alert("the user name is already been used");
+            return false;
+          },
+          async: false,
+        });
+        var pwdRegex = new RegExp(
+          "(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z0-9]).{8,30}"
+        );
+        if (password != confirmPassword) {
+          alert(
+            "The confirm password is not equal to the password" +
+              password +
+              " " +
+              confirmPassword
+          );
+          return false;
+        } else if (
+          typeof confirmPassword == "undefined" ||
+          confirmPassword == null ||
+          confirmPassword == ""
+        ) {
+          alert("the Password must not be null");
+          return false;
+        }
+
+        if (!pwdRegex.test(password)) {
+          alert("Password Format is wrong！");
+          return false;
+        } else {
+          console.log("register success");
+          return true;
+        }
+        // var userNameUnique =
+      }
+    </script>
+  </html>
+</html>

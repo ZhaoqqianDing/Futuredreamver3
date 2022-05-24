@@ -1,0 +1,73 @@
+body, html{
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-image: url("../images/main-theme.jpg");
+    background-size: 100vw 100vh;
+    background-position: center
+}
+.sign-up-form{
+    width: 450px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+    background: #fff;
+    padding: 20px;
+    margin: 8% auto 0;
+    text-align: center;
+}
+#sign-in-btn{
+    /* let it in the center */
+    margin: auto auto;
+    width: 200px;
+    height:40px;
+}
+.back-btn{
+    display: inline-block;
+    width: 200px;
+    height: 40px;
+    position: relative;
+    top: -40px;
+    right: -75px;
+    margin-bottom: 0px;
+}
+.back-btn button{
+    height: 40px;
+}
+
+.password-alert{
+    /* put it beside the container */
+    display: none;
+    position: relative;
+    top: -400px;
+    right: -970px;
+    margin-bottom: 0px;
+    width: 400px;
+}
+.alert ul{
+    padding-left: 0px;
+}
+.requirements
+{
+    list-style-type: none;
+}
+.same{
+    list-style-type: none;
+}
+.wrong .fa-check
+{
+    display: none;
+}
+
+.good .fa-times
+{
+    display: none;
+}
+.confirm-password-alert{
+    display: none;
+    position: relative;
+    top: -240px;
+    right: -970px;
+    margin-bottom: 0px;
+    width: 400px;
+}

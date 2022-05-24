@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <link rel="stylesheet" href="../css/bootstrap.min.css" />
+      <!-- style css -->
+      <link rel="stylesheet" href="../css/my_style.css" />
+
+      <!-- Responsive-->
+      <link rel="stylesheet" href="../css/responsive.css" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="../css/jquery.mCustomScrollbar.min.css" />
+      <!-- Tweaks for older IEs-->
+      <link
+        rel="stylesheet"
+        href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+      />
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css"
+        media="screen"
+      />
+      <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+        crossorigin="anonymous"
+      />
+      <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"
+      ></script>
+      <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+      <script
+        src="https://kit.fontawesome.com/165fd3af92.js"
+        crossorigin="anonymous"
+      ></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+      <script src="https://d3js.org/d3.v7.min.js"></script>
+      <script src="../js/jquery-3.6.0.js"></script>
+      <script src="https://unpkg.com/@popperjs/core@2"></script>
+      <script src="https://unpkg.com/tippy.js@6"></script>
+      <link href="../css/report.css" rel="stylesheet" />
+      <link rel="icon" href="../images/lcar.ico" type="image/x-icon" />
+    </head>
+    <body>
+      <style>
+        .header {
+          background: rgb(143, 188, 143);
+        }
+
+        .footer {
+          background: rgb(143, 188, 143);
+        }
+
+        .crop {
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+        }
+
+        .crop img {
+          width: 272px;
+          height: 105px;
+          margin: -13px 0 0 -10px;
+        }
+
+        .text-start {
+          margin-bottom: 5px;
+        }
+
+        .text-end {
+          margin-bottom: 5px;
+        }
+
+        #data_visualization1 {
+          padding: auto;
+          height: 100%;
+          width: 100%;
+        }
+
+        #data_visualization2 {
+          padding: auto;
+          height: 100%;
+          width: 100%;
+        }
+
+        #p1Carousel .carousel-inner .carousel-item .about {
+          margin-top: 30px;
+          background: rgb(232, 255, 226);
+        }
+
+        .logo {
+          position: relative;
+          top: 10px;
+          left: 175px;
+        }
+
+        .card img {
+          width: auto;
+          height: 200px;
+          object-fit: cover;
+        }
+
+        /* make the size of modal fade equal to #service */
+        .modal-dialog {
+          position: fixed;
+          top: 15%;
+          left: 35%;
+          transform: translate(-50%, -50%);
+        }
+
+        .address a:hover {
+          color: black;
+        }
+
+        .address a:visited {
+          color: black;
+        }
+
+        .address a:link {
+          color: black;
+        }
+
+        .address a:active {
+          color: black;
+        }
+
+        #change_color {
+          /* change the color of the font */
+          color: rgb(255, 255, 255);
+        }
+
+        .ratio-16x9 {
+          /* change the size of the ratio*/
+          width: 50%;
+          height: 50%;
+          /*  move to the center  */
+          position: relative;
+          top: 75%;
+          left: 25%;
+        }
+      </style>
+      <!-- end loader -->
+      <!-- header -->
+      <header>
+        <!-- header inner -->
+        <div class="logo">
+          <div class="crop">
+            <a href="#"><img src="../images/image9.png" /></a>
+          </div>
+        </div>
+        <div class="header">
+          <div class="container">
+            <div class="row">
+              <div
+                class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section"
+              ></div>
+              <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                <div class="menu-area">
+                  <div class="limit-box">
+                    <nav class="main-menu">
+                      <ul class="menu-area-main">
+                        <li><a href="/PageController/toHomePage">Home</a></li>
+                        <li>
+                          <a href="/PageController/toMapCalculator"
+                            >Calculator</a
+                          >
+                        </li>
+                        <li class="active">
+                          <a href="/PageController/toReport">Report</a>
+                          <ul class="sub-down">
+                            <li>
+                              <a href="#" th:text="${userName}"></a>
+                            </li>
+                            <li>
+                              <hr class="dropdown-divider" />
+                            </li>
+                            <li>
+                              <a href="/PageController/logOut">Log out</a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end header inner -->
+      </header>
+      <div class="container">
+        <div class="row">
+          <div class="col instruction">
+            <p class="name" th:text="${userName}" style="font-weight: 600"></p>
+            <p class="name">, Welcome! This is your green travel report!</p>
+            <p>
+              <i class="fa-solid fa-circle"></i
+              ><strong style="margin-left: 5px"
+                >You can select how many record do you want to see in the
+                report</strong
+              >
+            </p>
+            <p>
+              <i class="fa-solid fa-circle"></i
+              ><strong style="margin-left: 5px"
+                >Just select and click the button! And don't wait for the loading, it will only work after you click the button!</strong
+              >
+            </p>
+          </div>
+          <div class="col">
+            <h4>Enjoy your journey!</h4>
+            <form action="#" onsubmit="return getData()" align="left">
+              <label for="dayNum">Choose a period:</label>
+              <select
+                name="dayNum"
+                id="dayNum"
+                class="form-select"
+                style="margin-bottom: 10px"
+              >
+                <option value="3">3 times record</option>
+                <option value="5">5 times record</option>
+                <option value="7">7 times record</option>
+              </select>
+              <button>
+                <input
+                  type="submit"
+                  class="btn btn-primary"
+                  value="Get My Report!"
+                />
+              </button>
+            </form>
+            <a id="go-back-home" href="/PageController/toHomePage">
+              <button
+                class="btn btn-secondary"
+                align="center"
+                style="width: 254px;height:38px"
+              >
+                Go back to homepage!
+              </button>
+            </a>
+          </div>
+        </div>
+        <div class="row row-cols-2" id="grid-area">
+          <div class="col" id="favourate-transport">
+            <span id="report-faq1"><i class="fa-solid fa-question"></i></span>
+            <div
+              class="spinner-border text-secondary"
+              role="status"
+              style="position: relative; top: 50%"
+            >
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <div class="col" id="co2-emission">
+            <span id="report-faq2"><i class="fa-solid fa-question"></i></span>
+            <div
+              class="spinner-border text-secondary"
+              role="status"
+              style="position: relative; top: 50%"
+            >
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <div class="col" id="total-distance">
+            <span id="report-faq3"><i class="fa-solid fa-question"></i></span>
+            <div
+              class="spinner-border text-secondary"
+              role="status"
+              style="position: relative; top: 50%"
+            >
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+          <div class="col" id="contribution">
+            <span id="report-faq4"><i class="fa-solid fa-question"></i></span>
+            <div
+              class="spinner-border text-secondary"
+              role="status"
+              style="position: relative; top: 50%"
+            >
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <div class="footer">
+          <div class="copyright">
+            <p class="wow bounceIn">
+              Copyright &copy; 2022.Future Dream Traveller. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+      <script src="../js/report.js"></script>
+    </body>
+    <script>
+      function getData() {
+        var dayNum = document.getElementById("dayNum").value;
+        console.log(dayNum);
+
+        $.ajax({
+          type: "post",
+          url: "/UserController/reportData",
+          async: false,
+
+          data: {
+            dayNum: dayNum,
+          },
+          success: function (result) {
+            console.log(result);
+            // create a new array and push every type of result in to the new array
+            var transportArray = [];
+            result.forEach((element) => {
+              transportArray.push(element.type);
+            });
+            favourate_transportation(transportArray);
+            // create a new array and push every co2Emission of result in to the new array
+            var co2EmissionArray = [];
+            result.forEach((element) => {
+              co2EmissionArray.push(element.co2Emission);
+            });
+            var drivingEmissionArray = [];
+            result.forEach((element) => {
+              drivingEmissionArray.push(element.distance * 153.71);
+            });
+            co2_emission(co2EmissionArray, drivingEmissionArray);
+            // create a new array and push every distance of result in to the new array
+            var distanceArray = [];
+            result.forEach((element) => {
+              distanceArray.push(element.distance);
+            });
+            distance_draw(distanceArray);
+            environment_benefit(co2EmissionArray, drivingEmissionArray);
+            // distance and type. All other data can be calculeted by this two data
+          },
+          error: function (result) {
+            alert("error");
+          },
+        });
+      }
+      tippy("#report-faq1", {
+        content:
+               `<p>Here you can see your favourate transportation based on your selection</p>
+                <p>E.G. If you have used 2 times bus and 1 time bicycle in the previous 3 times travel</p>
+                <p>This section will show you the result of your favourate trasportation of the previous 3 travels is bus</p>`,
+        placement: "bottom",
+        arrow: true,
+        theme: "tomato",
+        animation: "scale",
+        duration: [500, 500],
+        delay: [0, 0],
+        maxWidth: 300,
+        allowHTML: true,
+      });
+      tippy("#report-faq2", {
+        content:
+               `<p>Here is the co2 emission based on your selection records</p>
+                <p>Real Emission means the co2 emission of the transport you chose at that time</p>
+                <p>Driving Emission means the co2 emission if your drove at that time</p>`,
+        placement: "bottom",
+        arrow: true,
+        theme: "tomato",
+        animation: "scale",
+        duration: [500, 500],
+        delay: [0, 0],
+        maxWidth: 300,
+        allowHTML: true,
+      });
+      tippy("#report-faq3", {
+        content:
+               `<p>Here is the distance based on your selection records</p>
+                <p>Distance means the distance you travelled at that time</p>`,
+        placement: "bottom",
+        arrow: true,
+        theme: "tomato",
+        animation: "scale",
+        duration: [500, 500],
+        delay: [0, 0],
+        maxWidth: 300,
+        allowHTML: true,
+      });
+      tippy("#report-faq4", {
+        content:
+               `<p>Here is the contribution based on your selection records</p>
+                <p>You can see how many co2 emissions you save in </p>`,
+        placement: "bottom",
+        arrow: true,
+        theme: "tomato",
+        animation: "scale",
+        duration: [500, 500],
+        delay: [0, 0],
+        maxWidth: 300,
+        allowHTML: true,
+      });
+    </script>
+  </html>
+</html>

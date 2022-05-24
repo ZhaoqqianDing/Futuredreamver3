@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.futuredreamtraveller.demo.Mapper.FeedbackMapper">
+
+    <resultMap id="BaseResultMap" type="com.futuredreamtraveller.demo.Entity.Feedback">
+        <result column="fid" jdbcType="VARCHAR" property="fid" />
+        <result column="feedback" jdbcType="VARCHAR" property="feedback" />
+        <result column="response" jdbcType="VARCHAR" property="response" />
+        <result column="f_password" jdbcType="VARCHAR" property="password" />
+    </resultMap>
+
+    <insert id="inputFeedback">
+    insert into feedback(fid,feedback,f_password) values(#{fid},#{feedback},#{password})
+</insert>
+
+<select id="checkFeedback" resultMap="BaseResultMap">
+     select * from feedback where fid=#{fid}
+</select>
+
+<update id="updateFeedback">
+    update feedback set feedback=#{feedback} where fid=#{fid}
+</update>
+</mapper>
